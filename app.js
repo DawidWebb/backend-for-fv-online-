@@ -13,7 +13,7 @@ mongoose.connect(config.db, {
 });
 
 const usersRoutes = require("./routes/users.js");
-// const clientsRoutes = require("./routes/clients");
+const describeRoutes = require("./routes/describe");
 // const ordersRoutes = require("./routes/orders");
 // const orderNumberRoutes = require("./routes/orderNumber");
 
@@ -24,9 +24,9 @@ app.use(bodyParser.json());
 
 // app.use("/ordernumber", orderNumberRoutes);
 app.use("/users", usersRoutes);
-// app.use("/clients", clientsRoutes);
+app.use("/describe", describeRoutes);
 // app.use("/orders", ordersRoutes);
 
-app.listen(8000, () => console.log("Server for appForm has started"));
+app.listen(8000, () => console.log("Server has started"));
 
 module.exports = app;

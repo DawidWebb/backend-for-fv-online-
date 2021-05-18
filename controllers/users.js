@@ -1,5 +1,10 @@
 const Login = require("../models/login");
 
+// Dodanie do bazy - opcjonalne
+//   const login = "";
+//   const password = "";
+//   new Login({ login, password }).save();
+
 const usersData = {
   accessLevel: true,
   login: "",
@@ -12,7 +17,7 @@ const getData = (req, res, next) => {
     usersData.password = data[0].password;
   });
 };
-// getData();
+getData();
 
 exports.postUser = (request, response, next) => {
   try {
