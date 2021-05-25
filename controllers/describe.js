@@ -1,38 +1,10 @@
 const Describe = require("../models/describe");
 
 // get all orders from DB
-// exports.getDescribes = (request, response, next) => {
-//   try {
-//     const findOrders = Order.find();
-//     findOrders.exec((err, data) => {
-//       response.status(200).json({
-//         data,
-//       });
-//     });
-//   } catch (error) {
-//     response.status(500).json({
-//       error,
-//       message:
-//         "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /orders",
-//     });
-//   }
-// };
-
-// get one order from DB by search
-exports.getDescribe = (request, response, next) => {
+exports.getDescribes = (request, response, next) => {
   try {
-    const value = request.params.value;
-
-    const findDescribe = Describe.find({
-      describeName: new RegExp(value, "i"),
-    });
-    findDescribe.exec((err, data) => {
-      if (data.length === 0 || data === null) {
-        response.status(404).json({
-          message: "Nie ma takiego opisu",
-        });
-        return;
-      }
+    const findDescribes = Describe.find();
+    findDescribes.exec((err, data) => {
       response.status(200).json({
         data,
       });
@@ -41,10 +13,38 @@ exports.getDescribe = (request, response, next) => {
     response.status(500).json({
       error,
       message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /describe/search",
+        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /orders",
     });
   }
 };
+
+// get one order from DB by search
+// exports.getDescribe = (request, response, next) => {
+//   try {
+//     const value = request.params.value;
+
+//     const findDescribe = Describe.find({
+//       describeName: new RegExp(value, "i"),
+//     });
+//     findDescribe.exec((err, data) => {
+//       if (data.length === 0 || data === null) {
+//         response.status(404).json({
+//           message: "Nie ma takiego opisu",
+//         });
+//         return;
+//       }
+//       response.status(200).json({
+//         data,
+//       });
+//     });
+//   } catch (error) {
+//     response.status(500).json({
+//       error,
+//       message:
+//         "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /describe/search",
+//     });
+//   }
+// };
 
 // // add client to DB from addClientFrom
 exports.postDescribe = (request, response, next) => {
