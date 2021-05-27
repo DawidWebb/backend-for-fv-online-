@@ -22,7 +22,6 @@ exports.getInvoiceNumber = (request, response, next) => {
 exports.postInvoiceNumber = (request, response, next) => {
   try {
     const body = request.body;
-    console.log(body);
 
     const newInvoiceNumber = new InvoiceNumber(body);
 
@@ -46,7 +45,6 @@ exports.postInvoiceNumber = (request, response, next) => {
 
 // edit and change data of order
 exports.putInvoiceNumber = (request, response, next) => {
-  console.log(request.body);
   try {
     const { month, number, _id } = request.body;
 

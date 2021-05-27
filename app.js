@@ -14,7 +14,7 @@ mongoose.connect(config.db, {
 
 const usersRoutes = require("./routes/users.js");
 const describeRoutes = require("./routes/describe");
-// const ordersRoutes = require("./routes/orders");
+const invoiceRoutes = require("./routes/invoice");
 const invoiceNumberRoutes = require("./routes/invoiceNumber");
 
 const app = express();
@@ -22,10 +22,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use("/describe", describeRoutes);
+app.use("/invoice", invoiceRoutes);
 app.use("/invoiceNumber", invoiceNumberRoutes);
 app.use("/users", usersRoutes);
-app.use("/describe", describeRoutes);
-// app.use("/orders", ordersRoutes);
 
 app.listen(8000, () => console.log("Server has started"));
 
