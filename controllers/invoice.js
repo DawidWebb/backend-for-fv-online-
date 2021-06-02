@@ -24,7 +24,7 @@ exports.getInvoice = (request, response, next) => {
     const value = request.params.value;
 
     const findInvoice = Invoice.find({
-      describeName: new RegExp(value, "i"),
+      invoiceNo: new RegExp(value, "i"),
     });
     findInvoice.exec((err, data) => {
       if (data.length === 0 || data === null) {
@@ -72,91 +72,37 @@ exports.postInvoice = (request, response, next) => {
 };
 
 // edit and change data of order
-// exports.putDescribe = (request, response, next) => {
-//   try {
-//     const {
-//       carrierAdress,
-//       carrierName,
-//       carrierVatNo,
-//       clientAdress,
-//       clientName,
-//       clientVatNo,
-//       orderAdr,
-//       orderCarrierCurr,
-//       orderCarrierPrice,
-//       orderCarrierTerms,
-//       orderClientCurr,
-//       orderClientPrice,
-//       orderClientTerms,
-//       orderDriver,
-//       orderFix,
-//       orderLoadAdress,
-//       orderLoadCity,
-//       orderLoadCountry,
-//       orderLoadDate,
-//       orderLoadHrs,
-//       orderLoadZip,
-//       orderTruck,
-//       orderUnloadAdress,
-//       orderUnloadCity,
-//       orderUnloadCountry,
-//       orderUnloadDate,
-//       orderUnloadHrs,
-//       orderUnloadZip,
-//       orderNumber,
-//     } = request.body;
+exports.putInvoice = (request, response, next) => {
+  try {
+    const { exchange, invoice, client, invoiceNo, id } = request.body;
 
-//     const filter = orderNumber;
-//     const update = {
-//       carrierAdress,
-//       carrierName,
-//       carrierVatNo,
-//       clientAdress,
-//       clientName,
-//       clientVatNo,
-//       orderAdr,
-//       orderCarrierCurr,
-//       orderCarrierPrice,
-//       orderCarrierTerms,
-//       orderClientCurr,
-//       orderClientPrice,
-//       orderClientTerms,
-//       orderDriver,
-//       orderFix,
-//       orderLoadAdress,
-//       orderLoadCity,
-//       orderLoadCountry,
-//       orderLoadDate,
-//       orderLoadHrs,
-//       orderLoadZip,
-//       orderTruck,
-//       orderUnloadAdress,
-//       orderUnloadCity,
-//       orderUnloadCountry,
-//       orderUnloadDate,
-//       orderUnloadHrs,
-//       orderUnloadZip,
-//     };
+    const update = {
+      invoiceNo,
+      exchange,
+      invoice,
+      client,
+    };
+    const filter = id;
 
-//     Order.findByIdAndUpdate(filter, update, { new: true }, (err, data) => {
-//       if (err) {
-//         response.status(404).json({
-//           message: "coś poszło nie tak przy OrderUpdate",
-//         });
-//         return;
-//       }
-//       response.status(202).json({
-//         data,
-//       });
-//     });
-//   } catch (error) {
-//     response.status(500).json({
-//       error,
-//       message:
-//         "Oops! Coś poszło nie tak, przy metodzie PUT w endpointcie /order",
-//     });
-//   }
-// };
+    Invoice.findByIdAndUpdate(filter, update, { new: true }, (err, data) => {
+      if (err) {
+        response.status(404).json({
+          message: "coś poszło nie tak przy InvoiceUpdate",
+        });
+        return;
+      }
+      response.status(202).json({
+        data,
+      });
+    });
+  } catch (error) {
+    response.status(500).json({
+      error,
+      message:
+        "Oops! Coś poszło nie tak, przy metodzie PUT w endpointcie /order",
+    });
+  }
+};
 
 // delete one order by _id
 exports.deleteInvoice = (request, response, next) => {
