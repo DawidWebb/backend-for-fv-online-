@@ -46,7 +46,7 @@ exports.getDescribes = (request, response, next) => {
 //   }
 // };
 
-// // add client to DB from addClientFrom
+// // add describe to DB from addClientFrom
 exports.postDescribe = (request, response, next) => {
   try {
     const body = request.body;

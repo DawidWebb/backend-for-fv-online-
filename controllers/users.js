@@ -1,15 +1,14 @@
 const Login = require("../models/login");
 
 // Dodanie do bazy - opcjonalne
-//   const login = "";
-//   const password = "";
-//   new Login({ login, password }).save();
 
-const usersData = {
-  accessLevel: true,
-  login: "",
-  password: "",
-};
+// const addUser = () => {
+//   const login = "WiesławDulowski";
+//   const password = "Omeg@2021";
+//   new Login({ login, password }).save();
+// };
+
+// addUser();
 
 const getData = (req, res, next) => {
   Login.find({}, (err, data) => {

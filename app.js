@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const config = require("./config/_configOmega.js");
+const config = require("./config/_config-omega");
 const mongoose = require("mongoose");
 
 //* mongoose conect *//
